@@ -1,0 +1,14 @@
+{
+  "name": "server_aframe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/index.js"
+  },
+  "author": "DEEM",
+  "license": "ISC",
+  "dependencies": {
+    "networked-aframe": "^0.7.0"
+  }
+}

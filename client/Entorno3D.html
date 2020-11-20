@@ -1,0 +1,169 @@
+
+<!---------------------------------------------------------------------------------------------------
+*  Se genera interfaz de realidad virtual para recorrer un mapa  con el framework de Aframe         *
+*  Se agrega fisica al mapa por medio de un modelado con figuras simples con aframe-physics         *
+*  Se agrega conectividad multiusuario con networked-aframe                                         *
+*  se implementa transmición de audio por webRTC. [by David Erira - NINUS - 18/11/2020]             *           
+-----------------------------------------------------------------------------------------------------
+ -->
+
+ <html>
+  <head>
+    <meta charset="utf-8">
+    <title style="font-size: 12;">VR NINUS</title>
+    <meta name="description" content="Networked-Aframe">
+
+    <!-- -------********----------------Conectividad en la red, multiplayer y audio "Network-Aframe"--------*********------- -->
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
+    <script>window.NAF || document.write('<script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js">\x3C/script>')</script>
+
+    <!-- -------********----------------Aframe--------*********------- -->
+    <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
+
+    <!-- -------********----------------fisica para las colisiones --------*********------- -->
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    
+    <!-- -------********---------------- Logica integrada by NINUS --------*********------- -->
+    <script src="/index.js"></script>
+
+    <!-- -------********---------------- Hoja de estilos  --------*********-------------->
+    <link href="/estilos.css" rel="stylesheet" type="text/css">
+
+
+  </head>
+  
+  <body >
+
+    <!-- interfaz para ingresar a la una sala nueva o existente  -->
+    <div  id="InterSalaID" class="inter-sala" >
+      <h3 class="text-ingresar-sala"> Ingrese el ID de una sala existente o crea una nueva sala </h3> 
+      <input  placeholder=" ID de sala" class="input1" type="number" id="Idsalaexistente" >
+      <input class="boton1" type="button" onclick="IngresaIdSalaExistente()" value="Ingresar">
+      <input class="boton1" type="button" onclick="GeneraIDSala()" value="Sala nueva">
+    </div>
+
+    <!-- Empieza la escena de Aframe  -->
+    <a-scene embedded style="margin-top: 0px;"  >
+        
+      <a-assets>
+
+        <a-asset-item id="feria" src="/modelos/Feria2.0.gltf"></a-asset-item>
+        <img id="sky" src="https://i.imgur.com/WqlqEkq.jpg" crossorigin="anonymous" />
+
+        <!-- Templates -->
+
+        <!-- Avatar  modeldo con esferas simples -->
+        <template id="avatar-template">
+          <a-entity position="0 3 0" class="avatar" networked-audio-source>
+            <a-sphere class="head"
+              color="#ffffff"
+              scale="0.45 0.5 0.4"
+              position="0 0.3 0"
+            ></a-sphere>
+
+            <a-entity class="face"
+              position="0 0.35 0"
+            >
+              <a-sphere class="eye"
+                color="#efefef"
+                position="0.16 0.1 -0.35"
+                scale="0.12 0.12 0.12"
+              >
+                <a-sphere class="pupil"
+                  color="#000"
+                  position="0 0 -1"
+                  scale="0.2 0.2 0.2"
+                ></a-sphere>
+              </a-sphere>
+              <a-sphere class="eye"
+                color="#efefef"
+                position="-0.16 0.1 -0.35"
+                scale="0.12 0.12 0.12"
+              >
+                <a-sphere class="pupil"
+                  color="#000"
+                  position="0 0 -1"
+                  scale="0.2 0.2 0.2"
+                ></a-sphere>
+              </a-sphere>
+            </a-entity>
+          </a-entity>
+        </template>
+        <!-- /Templates -->
+
+      </a-assets>
+
+      <a-entity id="camera" position="0 0.6 0"  >
+            <a-entity id="player"
+                networked="template:#avatar-template;attachTemplateToLocal:false;"
+                camera="zoom: 1.5"
+                position="0 2 0"
+                spawn-in-circle="radius:3"
+                wasd-controls="acceleration: 90"
+                look-controls
+                kinematic-body
+                >
+                <a-sphere class="head"
+                visible="false"
+                random-color
+                ></a-sphere>
+            </a-entity>    
+      </a-entity>
+
+      <!-- Entidad que contiene el modelo 3D del mapa cargado en assets -->
+      <a-entity id="idEntidadMapa" position="0 -1 -20" rotation="0 -90 0"  gltf-model="#feria" ></a-entity>
+
+      <!-- estructura que representa la forma fisica del mapa creada con formas simples para poder generar colisiones -->
+      <a-box static-body id="box2" static-body="sphereRadius: NaN" scale="0.94794 4.136 0.20029"  color="#2f2fff"  position="1.82929 1.18606 -4.40115" width="0.5" height="0.5" depth="0.5" ></a-box>
+      <a-box static-body id="box3" static-body="sphereRadius: NaN" scale="0.99435 4.3908 0.26761"  color="#2f2fff"  position="-1.28979 1.19452 -4.40743" width="0.5" height="0.5" depth="0.5" ></a-box>
+      <a-box static-body id="box4" material="color: #a0a0ee" static-body="sphereRadius: NaN" scale="175.19066 0.1 171.16245"  material="transparent:true"  position="0.30655 0 -17.61084" width="0.5" height="0.5" depth="0.5" ></a-box>
+      <a-box static-body id="box6" static-body="sphereRadius: NaN" scale="0.79002 4.62942 0.06559"  color="#2f2fff"  position="-6.95821 1.40909 -8.08889" width="0.5" height="0.5" depth="0.5" ></a-box>
+      <a-box static-body id="box7" static-body="sphereRadius: NaN" scale="5.54168 4.62942 0.06559"  color="#2f2fff"  position="-8.23216 1.40909 -11.0042" width="0.5" height="0.5" depth="0.5" ></a-box>
+      <a-box static-body id="box9" static-body="sphereRadius: NaN" scale="5.54168 4.62942 0.06559"  color="#2f2fff"  position="-8.23216 1.40909 -14.27419" width="0.5" height="0.5" depth="0.5" ></a-box>
+      <a-box static-body id="box10" static-body="sphereRadius: NaN" scale="5.54168 4.62942 0.06559"  color="#2f2fff"  position="-8.23216 1.40909 -17.22041" width="0.5" height="0.5" depth="0.5" ></a-box>
+      <a-box static-body id="box11" static-body="sphereRadius: NaN" scale="5.54168 4.62942 0.06559"  color="#2f2fff"  position="-8.23216 1.40909 -20.41294" width="0.5" height="0.5" depth="0.5" ></a-box>
+      <a-box static-body id="box12" static-body="sphereRadius: NaN" scale="5.54168 4.62942 0.06559"  color="#2f2fff"  position="-8.23216 1.40909 -23.45805" width="0.5" height="0.5" depth="0.5" ></a-box>     
+      <a-box static-body id="box13" static-body="sphereRadius: NaN" scale="0.75883 4.62942 0.06559"  color="#2f2fff"  position="-6.92952 1.40909 -26.43389" width="0.5" height="0.5" depth="0.5" ></a-box>
+      <a-box static-body id="box8" static-body="sphereRadius: NaN" scale="0.01197 4.62942 36.09941"  color="#2f2fff"  position="-9.64314 1.40909 -17.13813" width="0.5" height="0.5" depth="0.5" ></a-box>
+     
+      <!-- Plano sobre el cual estan los avatar es transparente -->
+      <a-plane static-body position="0.30655 1 -17.61084" material="side: double; color: #EF2D5E; transparent: true; opacity: 0"  scale="175 175 175" rotation="-90 0 0"></a-plane>
+
+      <!-- Entidad para el cielo -->
+      <a-sky src="#sky" rotation="0 -90 0"></a-sky>
+
+      <a-entity id="particles" particle-system="preset: snow"></a-entity>
+
+      <!-- Este node permite pausar la escena hasta que se ingrese un ID de sala -->
+      <a-node id="waitOnMe">  </a-node>
+    
+    </a-scene>
+
+    
+    <script>
+      // se sincronizan los avatar en su posición y rotación, ademas se agrega el la sincronización del color del avatar
+      // este Script debe ir en el docuimento HTML siempre
+      NAF.schemas.add({
+        template: '#avatar-template',
+        components: [
+          'position',
+          'rotation',
+          {
+            selector: '.head',
+            component: 'material',
+            property: 'color'
+          }
+        ]
+      });
+
+      // Esta función se ejecuta cuando se conecrtra al servidor
+      function onConnect () {
+        console.log("onConnect", new Date());
+      }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.inter-sala {
+    display: -webkit-flex;
+    font-family: "Roboto", sans-serif;
+    color: rgb(78, 78, 78);
+   margin-left: 15%;
+    margin-top: 20px;
+    justify-content: center;
+    text-align: center;
+    align-items: baseline;
+    position: absolute;
+    height: 60px;
+    z-index: 1;
+    background-color:white;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    
+  }
+
+.input1{
+    width: 200px;
+    height: auto;
+    margin-left: 10px;
+    border-radius: 10px;
+    font-size: 17px;
+    border-width: 0;
+    padding: 6px;
+    background-color: rgb(207, 207, 207);
+}
+
+.input1:focus{
+    outline: none
+}
+
+.boton1{
+    width:  150px;
+    height: auto;
+    color: white;
+    background-color: rgb(152, 55, 243);
+    margin-left: 10px;
+    border-radius: 10px;
+    border-width: 0;
+    font-size: 18px;
+    padding: 5px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    cursor: hand;
+}
+
+.a-loader-title {
+    font-size: 0;
+    height: 0px;
+  }
+
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
+  
+  input[type=number] { -moz-appearance:textfield; }
+
+
+  #mySidenav a {
+    margin-top: 120px;
+    position: absolute;
+    left: -15px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 60px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  #mySidenav2 a {
+    position: absolute;
+    right: 20px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 60px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+  }
+    
+  #mySidenav a:hover {
+    left: 0;
+  }
+  
+  #mySidenav2 a:hover {
+    right: -20;
+  }
+  
+  
+  #ninuslogo {
+    top: 0px;
+    
+    left:-20;
+    background-color: transparent;
+  }
+  
+  #about {
+    top: 20px;
+    background-color:  rgb(152, 55, 243);;
+    font-family: "Roboto", sans-serif;
+
+  }
+  
+  #blog {
+    top: 65px;
+    background-color: rgb(152, 55, 243);;
+  }
+  
+  #projects {
+    top: 108px;
+    left:30;
+    background-color:  rgb(152, 55, 243);;
+  }
+  
+  #contact {
+    top: 200px;
+    background-color: #555
+  }
+  
+  
+  #contact3 {
+    top: 260px;
+    
+    background-color: transparent;
+    
+  }
+  
+  #pccontroles {
+    
+    margin-left: 80px;
+    background-color: transparent;
+    position: absolute;
+    bottom: 10px;
+  }
+  #contact2 {
+    position: absolute;
+    bottom: 10px;
+    margin-left: 68%;
+    background-color: transparent;
+    
+  }
+  
+  #contact4 {
+    top: 480px;
+    
+    background-color: transparent;
+    
+  }
+  
+  .button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0px 2px;
+    cursor: pointer;
+  }
+  
+    .mobileShow { display: none;}
+      /* Smartphone Portrait and Landscape */
+      @media only screen
+      and (min-device-width : 320px)
+      and (max-device-width : 480px){ .mobileShow { display: inline;}}
+     
+    .mobileHide { display: inline;}
+     /* Smartphone Portrait and Landscape */
+     @media only screen
+     and (min-device-width : 320px)
+     and (max-device-width : 480px){  .mobileHide { display: none;}}
+     
+  
+  
