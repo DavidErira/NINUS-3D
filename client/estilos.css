@@ -4,7 +4,8 @@
     display: -webkit-flex;
     font-family: "Roboto", sans-serif;
     color: rgb(78, 78, 78);
-   margin-left: 15%;
+    margin-left: 29%;
+    
     margin-top: 20px;
     justify-content: center;
     text-align: center;
@@ -49,6 +50,88 @@
     cursor: hand;
 }
 
+@media all and (max-height: 600px) {
+
+  #myDIV2{
+    display: none;
+    opacity: 0;
+  }
+
+  #myDIV{
+    display: none;
+    opacity: 0;
+  }
+}
+
+@media all and (max-width: 1100px) {
+  .inter-sala {
+    display: -webkit-flex;
+    font-family: "Roboto", sans-serif;
+    color: rgb(78, 78, 78);
+    margin-left: 28%;
+    
+   
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 10px;
+    position: absolute;
+    height: fit-content;
+    z-index: 1;
+    background-color:white;
+    border-radius: 20px;
+   
+    flex-direction: column;
+    
+  }
+  .input1{
+    width: 95%;
+    height: auto;
+    margin-left: 10px;
+    border-radius: 10px;
+    font-size: 17px;
+    border-width: 0;
+    padding: 6px;
+    background-color: rgb(207, 207, 207);
+}
+
+  .boton1{
+    width:  95%;
+    height: auto;
+    color: white;
+    background-color: rgb(152, 55, 243);
+   
+    margin-top: 10px;
+    border-radius: 10px;
+    border-width: 0;
+    font-size: 18px;
+    padding: 5px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    cursor: hand;}
+
+    #mySidenav2 {
+      position: absolute;
+      right: 20px;
+      transition: 0.3s;
+      padding: 15px;
+      width: 0px;
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      border-radius: 0 5px 5px 0;
+      opacity: 0;
+    }
+
+    #myDIV{
+      display: none;
+      opacity: 0;
+    }
+ 
+}
+
+
+
+
+
 .a-loader-title {
     font-size: 0;
     height: 0px;
@@ -61,6 +144,11 @@
   }
   
   input[type=number] { -moz-appearance:textfield; }
+
+
+
+
+
 
 
   #mySidenav a {
@@ -129,10 +217,10 @@
   
   
   #contact3 {
-    top: 260px;
-    
+    bottom: 6px;
+    margin-left: 15px;
     background-color: transparent;
-    
+    opacity: 0.7;
   }
   
   #pccontroles {
@@ -151,8 +239,9 @@
   }
   
   #contact4 {
-    top: 480px;
-    
+    position: absolute;
+    bottom: 10px;
+    margin-left: 55%;
     background-color: transparent;
     
   }
@@ -170,17 +259,69 @@
     cursor: pointer;
   }
   
-    .mobileShow { display: none;}
+    .mobileShow {
+       display: none;
+      }
+
       /* Smartphone Portrait and Landscape */
-      @media only screen
-      and (min-device-width : 320px)
-      and (max-device-width : 480px){ .mobileShow { display: inline;}}
+      @media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+         .mobileShow {
+            display: inline;
+          }
+
+          .inter-sala {
+            display: -webkit-flex;
+            font-family: "Roboto", sans-serif;
+            color: rgb(78, 78, 78);
+            margin-left: 10%;
+            
+           
+            justify-content: center;
+            text-align: center;
+            padding-bottom: 10px;
+            position: absolute;
+            height: fit-content;
+            z-index: 1;
+            background-color:white;
+            border-radius: 20px;
+           
+            flex-direction: column;
+            
+          }
+
+          #about {
+            top: 120px;
+            background-color:  rgb(152, 55, 243);;
+            font-family: "Roboto", sans-serif;
+            font-size: 8;
+          }
+
+          #blog {
+            top: 160px;
+            background-color: rgb(152, 55, 243);
+            width: 200px;
+          }
+          
+          #projects {
+            top: 217px;
+            left:30;
+            background-color:  rgb(152, 55, 243);;
+          }
+        
+        }
      
-    .mobileHide { display: inline;}
+    .mobileHide {
+       display: inline;
+      }
+
+
      /* Smartphone Portrait and Landscape */
-     @media only screen
-     and (min-device-width : 320px)
-     and (max-device-width : 480px){  .mobileHide { display: none;}}
+     @media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+         .mobileHide {
+            display: none;
+          }
+        
+        }
      
   
   
