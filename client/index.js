@@ -10,7 +10,7 @@ function GeneraIDSala()
             var idSala = Math.floor( Math.random()*(1000 * 99999));
            
             console.log("conectado a sala: "+ idSala);
-            document.getElementById("InterSalaID").innerHTML = '<h3 class="sala-actual"> El id de la sala es: '+idSala+ '</h3>';
+            document.getElementById("InterSalaID").innerHTML = '<h3 class="sala-actual"> El id de la sala es: '+idSala+ '</h3>  ';
             sceneEl.setAttribute('networked-scene', "app: myApp; room: "+idSala+"; debug: true; adapter: webrtc; audio:true ");
             
             document.getElementById('waitOnMe').emit('loaded'); 
@@ -35,7 +35,7 @@ function IngresaIdSalaExistente()
             }
             else {
                 console.log("conectado a sala: "+ SalaExistente.value);
-                document.getElementById("InterSalaID").innerHTML = '<h3 class="sala-actual"> El id de la sala es: '+SalaExistente.value+ '</h3>';
+                document.getElementById("InterSalaID").innerHTML = '<h3 class="sala-actual"> El id de la sala es: '+SalaExistente.value+ '</h3> ';
                 sceneEl.setAttribute('networked-scene', "app: myApp; room: "+SalaExistente.value+"; debug: true; adapter: webrtc; audio:true ");
                 document.getElementById('waitOnMe').emit('loaded'); 
                 console.log( "va a iniciar" );
@@ -95,6 +95,10 @@ AFRAME.registerComponent('spawn-in-circle', {
 
     }
 
+    function OnOffAudio(){
+      var elemento = document.getElementById("escena-gen");
+      elemento.setAttribute('networked-scene', "app: myApp; debug: true; adapter: webrtc; audio:false ");
+    }
 
   /*   funciones de NINUS -------------------------------------------------------------------------------------------- */
     

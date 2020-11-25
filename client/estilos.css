@@ -109,16 +109,8 @@
     cursor: hand;}
 
     #mySidenav2 {
-      position: absolute;
-      right: 20px;
-      transition: 0.3s;
-      padding: 15px;
-      width: 0px;
-      text-decoration: none;
-      font-size: 20px;
-      color: white;
-      border-radius: 0 5px 5px 0;
-      opacity: 0;
+   
+      display: none;
     }
 
     #myDIV{
