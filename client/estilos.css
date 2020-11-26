@@ -22,10 +22,10 @@
   }
 
 .input1{
-    width: 200px;
+    width: 110px;
     height: auto;
     margin-left: 10px;
-    border-radius: 10px;
+    border-radius: 3px;
     font-size: 17px;
     border-width: 0;
     padding: 6px;
@@ -42,7 +42,7 @@
     color: white;
     background-color: rgb(152, 55, 243);
     margin-left: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     border-width: 0;
     font-size: 18px;
     padding: 5px;
@@ -87,7 +87,8 @@
     width: 95%;
     height: auto;
     margin-left: 10px;
-    border-radius: 10px;
+    margin-top: 10px;
+    border-radius: 3px;
     font-size: 17px;
     border-width: 0;
     padding: 6px;
@@ -101,7 +102,7 @@
     background-color: rgb(152, 55, 243);
    
     margin-top: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     border-width: 0;
     font-size: 18px;
     padding: 5px;
@@ -193,13 +194,13 @@
   
   #blog {
     top: 65px;
-    background-color: rgb(152, 55, 243);;
+    background-color: rgb(152, 55, 243);
   }
   
   #projects {
     top: 108px;
     left:30;
-    background-color:  rgb(152, 55, 243);;
+    background-color:  rgb(152, 55, 243);
   }
   
   #contact {
@@ -282,22 +283,26 @@
           }
 
           #about {
-            top: 120px;
-            background-color:  rgb(152, 55, 243);;
+            top: 150px;
+            background-color:  rgb(152, 55, 243);
             font-family: "Roboto", sans-serif;
             font-size: 8;
           }
 
           #blog {
-            top: 160px;
+            top: 190px;
             background-color: rgb(152, 55, 243);
             width: 200px;
+            height: 10px;
+            
           }
           
           #projects {
-            top: 217px;
+            height: 10px;
+            top: 233px;
             left:30;
-            background-color:  rgb(152, 55, 243);;
+            background-color:  rgb(152, 55, 243);
+            
           }
         
         }

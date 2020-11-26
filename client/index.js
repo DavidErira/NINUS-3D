@@ -8,6 +8,14 @@ function GeneraIDSala()
         {
             var sceneEl = document.querySelector('a-scene');
             var idSala = Math.floor( Math.random()*(1000 * 99999));
+
+            var username = 'user-' + makeId(5).toLowerCase();
+            var inputNick=document.getElementById("nick");
+
+            if(inputNick.value != ""){
+              username=inputNick.value;
+              console.log("Agrego un nickname valido");
+            }
            
             console.log("conectado a sala: "+ idSala);
             document.getElementById("InterSalaID").innerHTML = '<h3 class="sala-actual"> El id de la sala es: '+idSala+ '</h3>  ';
@@ -15,6 +23,15 @@ function GeneraIDSala()
             
             document.getElementById('waitOnMe').emit('loaded'); 
             console.log( "Inicia todo" );
+
+            //username = prompt('Choose a username', username);
+            var player = document.getElementById('player');
+            var myNametag = player.querySelector('.nametag');
+            myNametag.setAttribute('text','value: '+username+'; align:center;');
+
+            //document.querySelector('a-scene').components['networked-scene'].connect();
+          
+
         }
 
 
@@ -29,6 +46,14 @@ function IngresaIdSalaExistente()
             var sceneEl = document.querySelector('a-scene');
             var SalaExistente = document.getElementById("Idsalaexistente");
 
+            var username = 'user-' + makeId(5).toLowerCase();
+            var inputNick=document.getElementById("nick");
+
+            if(inputNick.value != ""){
+              username=inputNick.value;
+              console.log("Agrego un nickname valido");
+            }
+
             if (SalaExistente.value == "" ){
                 console.log("ID invalido");
                 alert("Ingresa un ID valido !!");
@@ -39,9 +64,33 @@ function IngresaIdSalaExistente()
                 sceneEl.setAttribute('networked-scene', "app: myApp; room: "+SalaExistente.value+"; debug: true; adapter: webrtc; audio:true ");
                 document.getElementById('waitOnMe').emit('loaded'); 
                 console.log( "va a iniciar" );
+
+                
+               
+                //username = prompt('Choose a username', username);
+                var player = document.getElementById('player');
+                var myNametag = player.querySelector('.nametag');
+                myNametag.setAttribute('text','value: '+username+'; align:center;');
+
+                //document.querySelector('a-scene').components['networked-scene'].connect();
+              
+               
+
             }
             
            
+        }
+
+
+
+        function makeId(length) {
+          var text = "";
+          var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+          for (var i = 0; i < length; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+          return text;
         }
 
 
