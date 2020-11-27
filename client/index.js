@@ -4,6 +4,8 @@
 *   el cual se genera aleatoriamente en esta misma función. [by David Erira - NINUS - 18/11/2020]                *
 ------------------------------------------------------------------------------------------------------------------
 */
+var nickNameMe = "nick";
+
 function GeneraIDSala()
         {
             var sceneEl = document.querySelector('a-scene');
@@ -11,14 +13,16 @@ function GeneraIDSala()
 
             var username = 'user-' + makeId(5).toLowerCase();
             var inputNick=document.getElementById("nick");
+            
 
             if(inputNick.value != ""){
               username=inputNick.value;
               console.log("Agrego un nickname valido");
             }
-           
+            nickNameMe=username;
+
             console.log("conectado a sala: "+ idSala);
-            document.getElementById("InterSalaID").innerHTML = '<h3 class="sala-actual"> El id de la sala es: '+idSala+ '</h3>  ';
+            document.getElementById("InterSalaID").innerHTML = '<h3 class="sala-actual"> El id de la sala es: '+idSala+ '</h3>   <input class="boton1" type="button" onclick="mic()" value="OFF-MIC"> ';
             sceneEl.setAttribute('networked-scene', "app: myApp; room: "+idSala+"; debug: true; adapter: webrtc; audio:true ");
             
             document.getElementById('waitOnMe').emit('loaded'); 
@@ -33,6 +37,8 @@ function GeneraIDSala()
           
 
         }
+
+
 
 
 /*
@@ -53,6 +59,7 @@ function IngresaIdSalaExistente()
               username=inputNick.value;
               console.log("Agrego un nickname valido");
             }
+            nickNameMe=username;
 
             if (SalaExistente.value == "" ){
                 console.log("ID invalido");
@@ -60,7 +67,7 @@ function IngresaIdSalaExistente()
             }
             else {
                 console.log("conectado a sala: "+ SalaExistente.value);
-                document.getElementById("InterSalaID").innerHTML = '<h3 class="sala-actual"> El id de la sala es: '+SalaExistente.value+ '</h3> ';
+                document.getElementById("InterSalaID").innerHTML = '<h3 class="sala-actual"> El id de la sala es: '+SalaExistente.value+ '</h3>    <input class="boton1" type="button" onclick="mic()" value="OFF-MIC">';
                 sceneEl.setAttribute('networked-scene', "app: myApp; room: "+SalaExistente.value+"; debug: true; adapter: webrtc; audio:true ");
                 document.getElementById('waitOnMe').emit('loaded'); 
                 console.log( "va a iniciar" );
@@ -81,6 +88,12 @@ function IngresaIdSalaExistente()
            
         }
 
+        function mic(){
+
+          var player = document.getElementById('player');
+          var myNametag = player.querySelector('.nametag');
+          myNametag.setAttribute('text','value: '+ nickNameMe+"*" +'; align:center;');
+        }
 
 
         function makeId(length) {
